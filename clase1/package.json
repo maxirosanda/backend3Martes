@@ -1,0 +1,23 @@
+{
+  "name": "clase1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/app.js --port 8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "modules",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "commander": "^14.0.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}

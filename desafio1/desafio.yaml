@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: desafio1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: desafio1-deployment-a
+  namespace: desafio1
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: desafio1
+      group: a
+  template:
+    metadata:
+      labels:
+        app: desafio1
+        group: a
+    spec:
+      containers:
+        - name: app
+          image: maxirosanda/desafio1:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: desafio1-deployment-b
+  namespace: desafio1
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: desafio1
+      group: b
+  template:
+    metadata:
+      labels:
+        app: desafio1
+        group: b
+    spec:
+      containers:
+        - name: app
+          image: maxirosanda/desafio1:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: desafio1-service
+  namespace: desafio1
+spec:
+  selector:
+    app: desafio1
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30008
+  type: NodePort
+
